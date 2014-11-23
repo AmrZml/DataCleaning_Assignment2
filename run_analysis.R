@@ -1,6 +1,6 @@
 ## set the path of the data
 
-setwd("G:/Faculty/Courses/Data Science collection/03 Getting and Cleaning Data/HomeWork/Ass02/Data/")
+setwd("./Data/")
 
 # get the activity name and features name
 
