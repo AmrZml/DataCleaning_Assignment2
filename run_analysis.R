@@ -60,7 +60,9 @@ setwd("G:/Faculty/Courses/Data Science collection/03 Getting and Cleaning Data/H
         tidy <-rbind(tidy,row)
       }
     }
+    data<-data.frame(tidy,row.names=NULL)
+    data$Actname  <- Act_name[data[,1],2]
     
-    write.table(tidy,"tidyData.txt")
+    write.table(data,"tidyData.txt")
       
     
