@@ -1,6 +1,6 @@
 ## set the path of the data
 
-setwd("./Data/")
+setwd("G:/Faculty/Courses/Data Science collection/03 Getting and Cleaning Data/HomeWork/Ass02/Data/")
 
 # get the activity name and features name
 
@@ -44,7 +44,23 @@ setwd("./Data/")
     MeanStdCol <- grep("mean|std",names(ALLData))
     Nocol <- ncol(ALLData)
     SubData <- ALLData [,c(1,MeanStdCol,Nocol)]
-
+    
 #  tidy data set with the average of each variable for each activity and each subject.
     Split_Subject <- split(SubData,SubData$Sub_id)
-    s<-lapply(Split_Subject,function(m) tapply(m[[1]],factor(m[[1]][[81]]),mean))
+    tidy <- c()
+    for (i in seq(1:length(Split_Subject))){
+      subject <- Split_Subject[[i]]
+      Activity <- split(subject, s$actName)
+      for (j in seq(1:length(Activity))){
+        Act <- Activity[[j]]
+        n<- length(Act)
+        Avg <- sapply(Act[1:n-1],mean)
+        
+        row <- c(j,Avg)
+        tidy <-rbind(tidy,row)
+      }
+    }
+    
+    write.table(tidy,"tidyData.txt")
+      
+    
